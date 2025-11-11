@@ -1,0 +1,25 @@
+{
+  "app": {
+    "name": "api-aestech-panel"
+  },
+  "secret_key": "rahasia,jangan,ada,yang,tahu",
+  "web": {
+    "prefork": false,
+    "port": 8030
+  },
+  "log": {
+    "level": 6
+  },
+  "database": {
+    "username": "root",
+    "password": "Halloexpress123@",
+    "host": "host.docker.internal",
+    "port": 3306,
+    "name": "access_new",
+    "pool": {
+      "idle": 10,
+      "max": 100,
+      "lifetime": 300
+    }
+  }
+}

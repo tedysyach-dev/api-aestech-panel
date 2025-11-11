@@ -1,0 +1,11 @@
+services:
+  paneltrial:
+    build:
+      context: ../../..
+      dockerfile: cmd/api/deploy/Dockerfile
+    container_name: panel_trial
+    restart: always
+    ports:
+      - "8030:8030"
+    network_mode: "host"
+    
