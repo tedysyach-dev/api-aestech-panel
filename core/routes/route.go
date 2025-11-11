@@ -1,10 +1,15 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"backend/web/controller"
+
+	"github.com/gofiber/fiber/v2"
+)
 
 type RouteConfig struct {
-	App           *fiber.App
-	LogMiddleware fiber.Handler
+	App               *fiber.App
+	LogMiddleware     fiber.Handler
+	BranchsController *controller.BranchsController
 }
 
 func (c *RouteConfig) Setup() {
@@ -13,6 +18,10 @@ func (c *RouteConfig) Setup() {
 	c.SetupAuthRoute()
 }
 
-func (c *RouteConfig) SetupGuestRoute() {}
+func (c *RouteConfig) SetupGuestRoute() {
+	branch := c.App.Group("branch")
+	branch.Post("/management", c.BranchsController.AddNewManagement)
+	branch.Post("/", c.BranchsController.AddNewBranch)
+}
 
 func (c *RouteConfig) SetupAuthRoute() {}

@@ -3,6 +3,9 @@ package config
 import (
 	"backend/core/middlewares"
 	"backend/core/routes"
+	"backend/web/controller"
+	"backend/web/repository"
+	"backend/web/service"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
@@ -44,9 +47,16 @@ func Bootstrap(config *BootstrapConfig) {
 
 	logMiddleware := middlewares.RequestLogger(config.Log)
 
+	branchRepository := repository.NewBranchsRepository(config.Log)
+
+	branchService := service.NewBrandsService(config.DB, config.Log, config.Validate, branchRepository)
+
+	branchController := controller.NewBrandsController(branchService, config.Log)
+
 	routeConfig := routes.RouteConfig{
-		App:           config.App,
-		LogMiddleware: logMiddleware,
+		App:               config.App,
+		LogMiddleware:     logMiddleware,
+		BranchsController: branchController,
 	}
 
 	routeConfig.Setup()
