@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "backend",
+    "development": "dev"
+  },
+  "secret_key": "rahasia,jangan,ada,yang,tahu",
+  "web": {
+    "prefork": false,
+    "port": 1903
+  },
+  "log": {
+    "level": 6
+  },
+  "allowedWeb": "",
+  "database": {
+    "username": "root",
+    "password": "Halloexpress123@",
+    "host": "localhost",
+    "port": 3306,
+    "name": "aestech_local",
+    "pool": {
+      "idle": 10,
+      "max": 100,
+      "lifetime": 300
+    }
+  },
+  "mongo": {
+    "url": "mongodb://localhost:27017",
+    "auth_source": "admin",
+    "username": "root",
+    "password": "example",
+    "name": "myapp_${APP_ENV}_db",
+     "pool": {
+      "idle": 10,
+      "max": 100,
+      "lifetime": 10
+    }
+  }
+}

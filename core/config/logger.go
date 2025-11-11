@@ -1,0 +1,20 @@
+package config
+
+import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+)
+
+func NewLogger(viper *viper.Viper) *logrus.Logger {
+	log := logrus.New()
+
+	log.SetLevel(logrus.Level(viper.GetInt32("log.level")))
+	log.SetFormatter(&logrus.TextFormatter{
+		FullTimestamp:   true,
+		TimestampFormat: "2006-01-02 15:04:05",
+		ForceColors:     true, // kasih warna biar gampang baca
+		PadLevelText:    true, // ratain level log
+	})
+
+	return log
+}
